@@ -1,3 +1,4 @@
+require 'awesome_print'
 ###################################
 ######  CLASS METHODS & SELF  #####
 ###################################
@@ -26,11 +27,17 @@
 ###################################
 
 ## INSTANCE VARIABLES
+# instance variables are accessible throughout the class.
+# they usually store attributes.
+# ex - user, password
 
 ## INSTANCE METHODS
+    # these are the behaviors of our classes.
+    # ex - send a message, like a post, upload a photo
+
 
       #INITIALIZE METHOD
-
+      # set up stuff. will run automatically when we create a new obj
 
 ## ATTRIBUTES
 
@@ -62,50 +69,56 @@
 
 #Class methods are called directly by the class and not by an instance of the class.
 
+class Kitten
+  # no initialize bc we are not creating Kitten.new aka new instance
+  def self.say_meow
+    return "meow" # return this, don't puts it, so that we can change/use the value later!!!
+  end
 
+end
 
-
+puts Kitten.say_meow.upcase
 
 ###################################
 ######    LETS TRY IT OUT!    #####
 ###################################
 
 
-# class Pawn
-#   attr_reader :position
-#   def initialize(position)
-#     @position = position
-#   end
-#
-#   # This is the class method, it starts with self.
-#   # It is only called on the class directly Pawn.make_row
-#   def self.make_row(side)
-#     if side == "white"
-#       num = 2
-#     else
-#       num = 7
-#     end
-#
-#     pawns = []
-#     ("a".."h").each do |letter|
-#       pawns << self.new("#{letter}#{num}")
-#     end
-#
-#     pawns
-#   end
-# end
-#
-# #make one pawn
-# one_pawn = Pawn.new("A2")
-#
-# #make a whole row of pawns
-# pawns = Pawn.make_row("black")
-#
-# #What is being stored in this local variable pawns?
-# print pawns
-#
-# #WHAT IS THIS DOING!?
-# puts pawns.shuffle.first.position
+class Pawn
+  attr_reader :position
+  def initialize(position)
+    @position = position
+  end
+
+  # This is the class method, it starts with self.
+  # It is only called on the class directly Pawn.make_row
+  def self.make_row(side)
+    if side == "white"
+      num = 2
+    else
+      num = 7
+    end
+
+    pawns = []
+    ("a".."h").each do |letter|
+      pawns << self.new("#{letter}#{num}") # this loop creates an instance of Pawn obj inside the class. 
+    end
+
+    pawns
+  end
+end
+
+#make one pawn
+one_pawn = Pawn.new("A2")
+
+#make a whole row of pawns
+pawns = Pawn.make_row("black")
+
+#What is being stored in this local variable pawns?
+ap pawns
+
+#WHAT IS THIS DOING!?
+puts pawns.shuffle.first.position
 
 
 
